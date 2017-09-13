@@ -9,6 +9,7 @@ return array(
         'invokables' => array(
         ),
         'factories' => array(
+            'AlgoliaSearch\Client' => 'Detail\AlgoliaSearch\Factory\Client\AlgoliaSearchClientFactory',
             'Detail\AlgoliaSearch\Options\ModuleOptions' => 'Detail\AlgoliaSearch\Factory\Options\ModuleOptionsFactory',
         ),
         'initializers' => array(
