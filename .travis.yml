@@ -16,17 +16,17 @@ matrix:
 
 before_install:
 #  - if [[ $TEST_COVERAGE != 'true' ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
-  - cp phpunit.xml.dist phpunit.xml
+- cp phpunit.xml.dist phpunit.xml
 
 install:
-  - travis_retry composer install $COMPOSER_ARGS --ignore-platform-reqs
-  - if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry composer require --dev $COMPOSER_ARGS $COVERAGE_DEPS ; fi
-  - stty cols 120 && composer show
+- travis_retry composer install $COMPOSER_ARGS --ignore-platform-reqs
+- if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry composer require --dev $COMPOSER_ARGS $COVERAGE_DEPS ; fi
+- stty cols 120 && composer show
 
 script:
-  - if [[ $CS_CHECK == 'true' ]]; then composer cs-check ; fi
-  - if [[ $MD_CHECK == 'true' ]]; then composer md-check ; fi
-  - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage-clover ; else composer test ; fi
+- if [[ $CS_CHECK == 'true' ]]; then composer cs-check ; fi
+- if [[ $MD_CHECK == 'true' ]]; then composer md-check ; fi
+- if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage-clover ; else composer test ; fi
 
 after_script:
-  - if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry php vendor/bin/php-coveralls -v ; fi
+- if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry php vendor/bin/php-coveralls -v ; fi
