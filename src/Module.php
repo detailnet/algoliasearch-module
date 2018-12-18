@@ -16,13 +16,13 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            AutoloaderFactory::STANDARD_AUTOLOADER => array(
-                StandardAutoloader::LOAD_NS => array(
+        return [
+            AutoloaderFactory::STANDARD_AUTOLOADER => [
+                StandardAutoloader::LOAD_NS => [
                     __NAMESPACE__ => __DIR__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -30,6 +30,6 @@ class Module implements
      */
     public function getConfig()
     {
-        return include __DIR__ . '/../../../config/module.config.php';
+        return include __DIR__ . '/../config/module.config.php';
     }
 }
