@@ -19,13 +19,13 @@ class ModuleOptionsFactory implements
      * @return ModuleOptions
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-{
-    $config = $container->get('Config');
+    {
+        $config = $container->get('Config');
 
-    if (!isset($config['algoliasearch'])) {
-        throw new ServiceNotCreatedException('Config for AlgoliaSearch is not set');
+        if (!isset($config['algoliasearch'])) {
+            throw new ServiceNotCreatedException('Config for AlgoliaSearch is not set');
+        }
+
+        return new ModuleOptions($config['algoliasearch']);
     }
-
-    return new ModuleOptions($config['algoliasearch']);
-}
 }
