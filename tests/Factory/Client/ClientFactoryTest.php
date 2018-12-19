@@ -2,6 +2,7 @@
 
 namespace DetailTest\AlgoliaSearch\Factory\Client;
 
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 use AlgoliaSearch\Client;
@@ -14,18 +15,25 @@ class ClientFactoryTest extends FactoryTestCase
 {
     public function testCreateService()
     {
-        $client = $this->createClient();
+        $client = $this->createClient('test-id','test-key' );
 
         $this->assertInstanceOf(Client::CLASS, $client);
     }
 
-    protected function createClient(): Client
+    public function testCreateServiceThrowsExceptionForInvalidApplicationId()
+    {
+        $this->expectException(ServiceNotCreatedException::CLASS);
+        $this->expectExceptionMessage('AlgoliaSearch requires an applicationID');
+        $this->createClient(null, null);
+    }
+
+    protected function createClient(?string $applicationID, ?string $apiKey, ?array $hostsArray = null, ?array $options = []): Client
     {
         $moduleOptions = $this->prophesize(ModuleOptions::CLASS);
-        $moduleOptions->getApplicationId()->willReturn('test-id');
-        $moduleOptions->getApiKey()->willReturn('test-key');
-        $moduleOptions->getHosts()->willReturn(null);
-        $moduleOptions->getOptions()->willReturn([]);
+        $moduleOptions->getApplicationId()->willReturn($applicationID);
+        $moduleOptions->getApiKey()->willReturn($apiKey);
+        $moduleOptions->getHosts()->willReturn($hostsArray);
+        $moduleOptions->getOptions()->willReturn($options);
 
         $services = $this->getServices();
         $services->get(ModuleOptions::CLASS)->willReturn($moduleOptions->reveal());
