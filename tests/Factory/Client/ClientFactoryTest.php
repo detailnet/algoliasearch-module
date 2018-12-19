@@ -15,7 +15,7 @@ class ClientFactoryTest extends FactoryTestCase
 {
     public function testCreateService()
     {
-        $client = $this->createClient('test-id','test-key');
+        $client = $this->createClient('test-id', 'test-key');
 
         $this->assertInstanceOf(Client::CLASS, $client);
     }
