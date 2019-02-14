@@ -1,12 +1,12 @@
 {
     "name": "detailnet/algoliasearch-module",
-    "description": "Zend Framework 2 module for Algolia Search API Client",
+    "description": "Zend Framework 3 module for Algolia Search API Client",
     "type": "library",
     "keywords": [
         "algolia",
         "search",
         "module",
-        "zf2"
+        "zf3"
     ],
     "homepage": "https://github.com/detailnet/algoliasearch-module/",
     "license": "MIT",
@@ -17,26 +17,26 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "zendframework/zend-loader": "2.*",
-        "zendframework/zend-modulemanager": "2.*",
-        "zendframework/zend-mvc": "2.*",
-        "zendframework/zend-servicemanager": "2.*",
+        "php": "^7.1",
+        "zendframework/zend-loader": "^2.5.1",
+        "zendframework/zend-modulemanager": "^2.7.2",
+        "zendframework/zend-mvc": "^3.0.1",
+        "zendframework/zend-servicemanager": "^3.1",
         "algolia/algoliasearch-client-php": "^1.20.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.6",
-        "squizlabs/php_codesniffer" : "~2.3",
-        "phpmd/phpmd": "~2.2",
-        "satooshi/php-coveralls": "~1.0"
+        "phpunit/phpunit": "^7.0",
+        "squizlabs/php_codesniffer" : "^3.2",
+        "phpmd/phpmd": "^2.2",
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Detail\\AlgoliaSearch\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-0": {
+        "psr-4": {
             "DetailTest\\AlgoliaSearch\\": "tests/"
         }
     },
@@ -55,5 +55,19 @@
             "build.properties",
             "composer.phar"
         ]
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@md-check",
+            "@test"
+        ],
+        "cs-check": "phpcs --standard=phpcs.xml -v",
+        "cs-check-report": "phpcs --standard=phpcs.xml --report=checkstyle --report-file=build/checkstyle.xml",
+        "md-check": "phpmd src xml phpmd.xml",
+        "md-check-report": "phpmd src xml phpmd.xml --reportfile build/pmd.xml",
+        "test": "phpunit",
+        "test-coverage-html": "phpunit --coverage-html build/coverage",
+        "test-coverage-clover": "phpunit --coverage-clover build/clover.xml"
     }
 }

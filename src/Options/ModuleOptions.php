@@ -24,7 +24,7 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * {@inheritDoc}

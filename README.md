@@ -1,4 +1,4 @@
-# Zend Framework 2 Module for Algolia Search Search API Client
+# Zend Framework 3 Module for Algolia Search Search API Client
 
 [![Build Status](https://travis-ci.org/detailnet/algoliasearch-module.svg?branch=master)](https://travis-ci.org/detailnet/algoliasearch-module)
 [![Coverage Status](https://img.shields.io/coveralls/detailnet/algoliasearch-module.svg)](https://coveralls.io/r/detailnet/algoliasearch-module)
